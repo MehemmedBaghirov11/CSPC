@@ -24,8 +24,6 @@ Create the environment for a given lab:
 **Conclusion:**
 - The NumPy vectorised version is dramatically faster than the pure-Python loop because it processes all atoms at once instead of looping through them individually. All three tests pass, confirming the simulation follows the expected exponential decay law within tolerance.
 
-
-
 ---
 
 ## PW1 - Lab B: Data, Plotting, and Automation
@@ -38,3 +36,16 @@ Create the environment for a given lab:
 
 **Snakemake pipeline:**
 - The Snakefile automates figure generation: running `snakemake --cores 1 figure.png` only regenerates figure.png when decay_observed.csv or plot.py has changed, avoiding unnecessary recomputation.
+
+---
+
+## PW2 - Lab A: Motion from Tracking Data
+
+**Mean acceleration measured:**
+- -8.58 m/s^2 (standard deviation: 28.72), compared to the expected -9.81 m/s^2.
+
+**Why the acceleration was noisy:**
+- Differentiation amplifies measurement noise: small errors in the smooth position data get magnified once when computing velocity, and magnified again when computing acceleration from velocity. That's why the standard deviation (28.72) is much larger than the mean itself.
+
+**What integrating back showed:**
+- Integrating the noisy acceleration back up to velocity and then position recovered a curve very close to the original: the maximum difference was about 0.78 meters. This confirms that integration suppresses noise (the opposite effect of differentiation), since random errors partly cancel out when summed.
