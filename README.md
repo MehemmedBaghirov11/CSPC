@@ -49,3 +49,22 @@ Create the environment for a given lab:
 
 **What integrating back showed:**
 - Integrating the noisy acceleration back up to velocity and then position recovered a curve very close to the original: the maximum difference was about 0.78 meters. This confirms that integration suppresses noise (the opposite effect of differentiation), since random errors partly cancel out when summed.
+
+---
+
+## PW2 - Lab B: Optimization in Chemistry
+
+**Three optimisation methods (Part 2):**
+- On the easy convex function f(x) = (x-3)^2 + 1, gradient descent, Newton and SLSQP all reached x = 3 from x0 = 0, so the methods agree.
+- On the harder function g(x) = x^4 - 3x^2 + x + 5 (two minima and one maximum), the methods did not agree. From x0 = 0, gradient descent and SLSQP reached the global minimum at x = -1.30, but Newton landed on x = 0.17, which is a maximum (g'' = -5.65 < 0), because Newton only finds a point where g'(x) = 0. From x0 = 2, gradient descent and Newton found the local minimum at x = 1.13 (g'' = 9.35 > 0), while SLSQP found the global minimum at x = -1.30.
+- Lesson: on a simple problem the methods agree, but on a complicated landscape the starting point and the algorithm matter.
+
+**Reaction rate constant (Part 3):**
+- Fitting C(t) = C0 * exp(-k*t) to the noisy data gave k = 0.262, close to the expected 0.25, and the fitted curve passes through the data points.
+
+**Chemical equilibrium (Part 4):**
+- With K = 15.6, Newton (root-finding) gave x = 0.6638 and SLSQP (minimisation) gave x = 0.6638, so both methods agree.
+- Equilibrium composition: H2 = 0.336 mol, I2 = 0.336 mol, HI = 1.328 mol. The reactants fall and the product rises as x increases.
+
+**Titration equivalence point (Part 5, bonus):**
+- The slope of the pH curve is largest at about 50.0 mL, so the equivalence point is at about 50 mL.
