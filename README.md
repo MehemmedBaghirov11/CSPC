@@ -93,3 +93,14 @@ I used two checks: the Shapiro-Wilk test (numerical) and Q-Q plots (graphical, s
 - `thalach`: approximately normal. The points follow the line except for a small deviation in the lower tail (a slight skew to the left).
 - `trestbps`: not normal. The upper tail rises above the line, so it is skewed to the right.
 - `chol`: not normal. It is clearly skewed to the right, with one extreme value (564) far from the rest.
+
+### Session 2
+
+**Task 4, is the effect real? (see `thalach_groups.png`):**
+- I split `thalach` by `target`: 139 patients with heart disease and 164 healthy patients. Mean thalach is 139.3 for the disease group and 158.4 for the healthy group.
+- In Session 1, `thalach` was approximately normal on the Q-Q plot but Shapiro-Wilk rejected normality (p = 7.0e-5), so it is a borderline case. Because of this I ran both a t-test (assumes normality) and a Mann-Whitney U test (does not). Both agree: t-test p = 3.5e-14 and Mann-Whitney p = 1.9e-13. The groups genuinely differ: patients with heart disease reach a maximum heart rate about 19 beats per minute lower than healthy patients.
+- Uncertainty: I used the standard error of the mean (SEM): 1.92 for the disease group and 1.50 for the healthy group. The bar plot shows each mean with a 95% confidence interval (1.96 x SEM). The two error bars do not overlap (about 135.5-143.0 vs 155.4-161.3), so the picture agrees with the tests.
+
+**Task 5, do age and thalach move together? (see `age_thalach.png`):**
+- I computed both Pearson and Spearman correlation, since `thalach` was only borderline normal. They agree: Pearson r = -0.39 (p = 1.1e-12) and Spearman r = -0.39 (p = 1.5e-12).
+- Interpretation: age and maximum heart rate move in opposite directions. Older patients tend to reach a lower maximum heart rate. The relationship is moderate (r about -0.4), not strong: the scatter plot shows a clear downward trend but with a wide spread around the line. It is very unlikely to be due to chance.
