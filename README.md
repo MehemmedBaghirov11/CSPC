@@ -73,9 +73,11 @@ Create the environment for a given lab:
 
 ## PW3: Data, Distributions, Testing, and Causation
 
-**Dataset 1:** Heart Disease (Cleveland), from Kaggle / UCI Machine Learning Repository. 303 patients, 14 columns, no missing values in the four continuous columns I used (age, chol, trestbps, thalach).
+### Dataset 1: Heart Disease (Cleveland)
 
-### Session 1
+Source: Kaggle / UCI Machine Learning Repository. 303 patients, 14 columns, no missing values in the four continuous columns I used (age, chol, trestbps, thalach).
+
+#### Session 1 (Tasks 1-3, code: `session1.py`)
 
 **Task 1, loading the data:**
 - Loaded `heart.csv` with pandas. Shape is (303, 14). The four continuous columns are age (mean 54.4), chol (mean 246.7), trestbps (mean 131.7) and thalach (mean 149.6).
@@ -94,7 +96,7 @@ I used two checks: the Shapiro-Wilk test (numerical) and Q-Q plots (graphical, s
 - `trestbps`: not normal. The upper tail rises above the line, so it is skewed to the right.
 - `chol`: not normal. It is clearly skewed to the right, with one extreme value (564) far from the rest.
 
-### Session 2
+#### Session 2 (Tasks 4-5, code: `session2.py`)
 
 **Task 4, is the effect real? (see `thalach_groups.png`):**
 - I split `thalach` by `target`: 139 patients with heart disease and 164 healthy patients. Mean thalach is 139.3 for the disease group and 158.4 for the healthy group.
@@ -104,3 +106,11 @@ I used two checks: the Shapiro-Wilk test (numerical) and Q-Q plots (graphical, s
 **Task 5, do age and thalach move together? (see `age_thalach.png`):**
 - I computed both Pearson and Spearman correlation, since `thalach` was only borderline normal. They agree: Pearson r = -0.39 (p = 1.1e-12) and Spearman r = -0.39 (p = 1.5e-12).
 - Interpretation: age and maximum heart rate move in opposite directions. Older patients tend to reach a lower maximum heart rate. The relationship is moderate (r about -0.4), not strong: the scatter plot shows a clear downward trend but with a wide spread around the line. It is very unlikely to be due to chance.
+
+### Dataset 2: A chemical-exposure mystery (synthetic), Session 2 (Tasks 6-7, code: `chemicals.py`)
+
+**Task 6, the naive analysis:**
+- (to be filled in after running `chemicals.py`)
+
+**Task 7, look again (confounding):**
+- (to be filled in after the confounder analysis)
