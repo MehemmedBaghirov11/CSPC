@@ -68,3 +68,28 @@ Create the environment for a given lab:
 
 **Titration equivalence point (Part 5, bonus):**
 - The slope of the pH curve is largest at about 50.0 mL, so the equivalence point is at about 50 mL.
+
+---
+
+## PW3: Data, Distributions, Testing, and Causation
+
+**Dataset 1:** Heart Disease (Cleveland), from Kaggle / UCI Machine Learning Repository. 303 patients, 14 columns, no missing values in the four continuous columns I used (age, chol, trestbps, thalach).
+
+### Session 1
+
+**Task 1, loading the data:**
+- Loaded `heart.csv` with pandas. Shape is (303, 14). The four continuous columns are age (mean 54.4), chol (mean 246.7), trestbps (mean 131.7) and thalach (mean 149.6).
+
+**Task 2, shape of each variable (see `distributions.png`):**
+- `age`: spread mostly between 40 and 70, with a rough, uneven top around 55-60.
+- `chol`: one peak near 200-250 and a long tail to the right, with one extreme value near 560.
+- `trestbps`: peak around 120-130 and a tail to the right up to 200.
+- `thalach`: peak around 150-170 and a tail to the left down to 70.
+
+**Task 3, normality verdicts:**
+
+I used two checks: the Shapiro-Wilk test (numerical) and Q-Q plots (graphical, see `qqplots.png`). With 303 patients Shapiro-Wilk is very sensitive, and it rejected normality for all four variables (age p = 0.006, chol p = 5.9e-9, trestbps p = 1.8e-6, thalach p = 7.0e-5). So I also used the Q-Q plots to judge how far each variable is from normal.
+- `age`: approximately normal. The points follow the line closely, with only small deviations at the extreme ends.
+- `thalach`: approximately normal. The points follow the line except for a small deviation in the lower tail (a slight skew to the left).
+- `trestbps`: not normal. The upper tail rises above the line, so it is skewed to the right.
+- `chol`: not normal. It is clearly skewed to the right, with one extreme value (564) far from the rest.
