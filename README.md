@@ -109,8 +109,12 @@ I used two checks: the Shapiro-Wilk test (numerical) and Q-Q plots (graphical, s
 
 ### Dataset 2: A chemical-exposure mystery (synthetic), Session 2 (Tasks 6-7, code: `chemicals.py`)
 
-**Task 6, the naive analysis:**
-- (to be filled in after running `chemicals.py`)
+**Task 6, the naive analysis (see `naive_chemicals.png`):**
+- I measured how strongly each chemical is associated with malignancy using both Pearson and Spearman correlation. They agree: benzene r = 0.38 (Spearman 0.38) and cadmium r = 0.88 (Spearman 0.88), both with p far below 0.05.
+- Taken at face value, cadmium appears to be the cause: its association is much stronger, and its scatter plot is a tight rising band, while benzene's is a wide cloud. But correlation alone does not prove causation, so I test this in Task 7.
 
-**Task 7, look again (confounding):**
-- (to be filled in after the confounder analysis)
+**Task 7, look again (confounding) (see `within_band.png`):**
+- Dataset 2 also contains `pollution_index` and `age`. I checked whether pollution could be a third variable behind the cadmium association. Pollution is almost identical to cadmium (r = 0.98) and strongly associated with malignancy (r = 0.90), but unrelated to benzene (r = 0.05). Age is only weakly related (r = -0.10).
+- Method: I restricted the data to patients with similar pollution and recomputed the associations inside that group (pollution_index between 40 and 60, n = 199), then repeated this in several pollution bands (0-20, 20-40, 40-60, 60-80) to check the result is stable.
+- Result: cadmium's association dropped from r = 0.88 to about 0.3 (0.24-0.31 in every band), while benzene's association rose from r = 0.38 to about 0.7 (0.68-0.77 in every band). Spearman gives the same picture (inside the 40-60 band: benzene 0.71, cadmium 0.30).
+- Conclusion: **benzene is the real cause of malignancy; cadmium only looked guilty.** Cadmium tracks pollution, and pollution is associated with malignancy, so cadmium appeared strongly linked. Once pollution is held roughly constant, the cadmium link mostly disappears while benzene's link stays strong and consistent. Benzene looked weak at first because the pollution differences between patients added noise to its relationship with malignancy. Cadmium keeps a small leftover association (about 0.3) because the pollution bands are not perfectly constant and cadmium is almost the same as pollution. Correlation analysis alone cannot fully prove causation, but the pattern is consistent across all bands.
